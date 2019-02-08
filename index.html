@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="./Facebook_logo_(square).png">
+    <title>Twiddler</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./navigation.css">
+    <link rel="stylesheet" href="./content_left.css">
+    <link rel="stylesheet" href="./content_middle.css">
+    <link rel="stylesheet" href="./content_right.css">
+
+    <script src="jquery.js"></script>
+    <script src="data_generator.js"></script>
+    <script src="jquery.min.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="container">
+
+
+      <div id="navigation_bar">
+        <div id="logo"></div>
+        <div id="search_bar_div">
+          <input id="search_bar"></input>
+          <button id="search_bar_button"></button>
+        </div>
+        <div id="menu_bar">
+          <div id="friend_request_menu_bar"></div>
+          <div id="messages_menu_bar"></div>
+          <div id="notifications_menu_bar"></div>
+        </div>
+        <div id="more_menu_bar">
+          <div id="name_menu_bar">Anna</div>
+          <div id="home_menu_bar"><a href="./index.html" style="text-decoration: none; color: white;">Home</a></div>
+          <div id="create_menu_bar">Create</div>
+        </div>
+      </div>
+
+
+      <div id="twiddler_content">
+        <div id="content_left">
+          <div id="profile_bar">
+            <div id="name_profile_bar">Anna Pojawis</div>
+            <div id="edit_profile_bar">Edit Profile</div>
+          </div>
+
+          <div id="favorites_bar">FAVORITES
+            <div id="news_favorites_bar"><a href="./index.html" style="text-decoration: none; color: rgb(46, 46, 46);">News Feed</a></div>
+            <div id="messages_favorites_bar">Messages</div>
+            <div id="events_favorites_bar">Events</div>
+            <div id="photos_favorites_bar">Photos</div>
+            <div id="browse_favorites_bar">Browse</div>
+          </div>
+
+          <div id="friends_bar">FRIENDS
+            <div id="username_sharksforcheap">sharksforcheap</div>
+            <div id="username_mracus">mracus</div>
+            <div id="username_douglascalhoun">douglascalhoun</div>
+            <div id="username_shawndrost">shawndrost</div>
+          </div>
+        </div>
+
+
+        <div id="content_middle">
+          <div id="insert_content">
+            <div id="insert_status_photos">
+                <button id="update_status_button">Update Status</button>
+                <button id="add_photos_button">Add Photos/Videos</button>
+            </div>
+            <div id="message_textbox">
+                <input id="write_message" placeholder="What's on your mind?"></input>
+            </div>
+          </div>
+          
+          <div id="news_feed"></div>
+          <div id="load_more">
+            <button id="load_more_button">Load More</button>
+          </div>
+
+
+
+
+        </div>
+        <div id="content_right"></div>
+
+
+      </div>
+    </div>
+
+
+
+    <script>
+      $(document).ready(function(){
+        var $newsfeed = $('#news_feed');
+        $newsfeed.html('');
+        var index = streams.home.length - 1;
+        while(index >= 0){
+          var tweet = streams.home[index];
+          var $tweet = $('<div></div>');
+          $tweet.text('@' + tweet.user + ': ').append('<br/>').append(tweet.message).append('<br/>').append(new Date().toString().substring(0,24)).append('<br/>'+'<br/>');
+          $tweet.appendTo($newsfeed);
+          index -= 1;
+        }
+
+        $("#write_message").on("keypress", function (e) {
+          if (e.which == 13) {
+            if(count1 === 0 && count2 === 0 && count3 === 0 && count4 === 0 && count5 === 0 && count6 === 0 && count7 === 0 && count8 === 0 && count9 === 0) {
+              var msg = $('#write_message').val();
+              if ($('#write_message').val() === '' ) {
+                alert("Please write a message.");
+                return false;
+              } else {
+            $('#news_feed').prepend('<br/>' + '<br/>').prepend(new Date().toString().substring(0,24)).prepend('<br/>').prepend(msg).prepend('<br/>').prepend('@annapo23: ');
+            $("#write_message").val("");
+          }
+        }
+      }
+      });
+
+      
+
+     
+        let count1 = 0;
+        let count2 = 0;
+        let count3 = 0;
+        let count4 = 0;
+        let count5 = 0;
+        let count6 = 0;
+        let count7 = 0;
+        let count8 = 0;
+        let count9 = 0;
+
+        var str = $('#news_feed').text();
+        var line = str.split('@');
+
+        console.log(line);
+
+        $('#username_sharksforcheap').on('click', function(){
+          if(count1 === 0) {
+            $('#news_feed').html('');
+          }
+
+          count1++;
+
+          if(count1 === 1) {
+          
+            var value = 'sharksforcheap';
+
+            for(let i = 0; i < line.length; i++) {
+              if(line[i].includes(value)) {
+                $('#news_feed').prepend('<br/>' + '<br/>').prepend('@' + line[i]);
+              }
+            } 
+          }   
+        });
+        
+        $("#search_bar_button").on('click', function () {
+          if(count2 === 0) {
+            $('#news_feed').html('');
+          }
+
+          count2++;
+
+          if(count2 === 1) {
+
+            var value = $("#search_bar").val();
+
+            for(let i = 0; i < line.length; i++) {
+             if(line[i].includes(value)) {
+                $('#news_feed').prepend('<br/>' + '<br/>').prepend('@' + line[i]);
+              }
+            } 
+          }
+        });
+
+
+        $('#username_mracus').click(function(){
+          if(count3 === 0) {
+            $('#news_feed').html('');
+          }
+
+          count3++;
+
+          if(count3 === 1) {
+          
+          var value = 'mracus';
+
+          for(let i = 0; i < line.length; i++) {
+            if(line[i].includes(value)) {
+              $('#news_feed').prepend('<br/>' + '<br/>').prepend('@' + line[i]);
+            }
+          } 
+        }   
+        });
+
+        $("#search_bar_button").on('click', function () {
+          if(count4 === 0) {
+            $('#news_feed').html('');
+          }
+
+          count4++;
+
+          if(count4 === 1) {
+
+            var value = $("#search_bar").val();
+
+            for(let i = 0; i < line.length; i++) {
+             if(line[i].includes(value)) {
+                $('#news_feed').prepend('<br/>' + '<br/>').prepend('@' + line[i]);
+              }
+            } 
+          }
+        });
+
+
+        $('#username_douglascalhoun').click(function(){
+          if(count5 === 0) {
+            $('#news_feed').html('');
+          }
+
+          count5++;
+
+          if(count5 === 1) {
+          
+            var value = 'douglascalhoun';
+
+            for(let i = 0; i < line.length; i++) {
+              if(line[i].includes(value)) {
+               $('#news_feed').prepend('<br/>' + '<br/>').prepend('@' + line[i]);
+              }
+            } 
+          }   
+        });
+
+        $("#search_bar_button").on('click', function () {
+          if(count6 === 0) {
+            $('#news_feed').html('');
+          }
+
+          count6++;
+
+          if(count6 === 1) {
+
+            var value = $("#search_bar").val();
+
+            for(let i = 0; i < line.length; i++) {
+             if(line[i].includes(value)) {
+                $('#news_feed').prepend('<br/>' + '<br/>').prepend('@' + line[i]);
+              }
+            } 
+          }
+        });
+
+
+        $('#username_shawndrost').click(function(){
+          if(count7 === 0) {
+            $('#news_feed').html('');
+          }
+
+          count7++;
+
+          if(count7 === 1) {
+          
+            var value = 'shawndrost';
+
+            for(let i = 0; i < line.length; i++) {
+              if(line[i].includes(value)) {
+                $('#news_feed').prepend('<br/>' + '<br/>').prepend('@' + line[i]);
+              }
+            } 
+          }    
+        });
+
+        $("#search_bar_button").on('click', function () {
+          if(count8 === 0) {
+            $('#news_feed').html('');
+          }
+
+          count8++;
+
+          if(count8 === 1) {
+
+            var value = $("#search_bar").val();
+
+            for(let i = 0; i < line.length; i++) {
+             if(line[i].includes(value)) {
+                $('#news_feed').prepend('<br/>' + '<br/>').prepend('@' + line[i]);
+              }
+            } 
+          }
+        });
+
+        $('#name_profile_bar').click(function(){
+          if(count9 === 0) {
+            $('#news_feed').html('');
+          }
+
+          count9++;
+
+          if(count9 === 1) {
+          
+            var value = 'annapo23';
+
+            for(let i = 0; i < line.length; i++) {
+              if(line[i].includes(value)) {
+                $('#news_feed').prepend('<br/>' + '<br/>').prepend('@' + line[i]);
+              }
+            } 
+          }    
+        });
+
+        
+
+
+        $('#load_more_button').on('click', function() {
+          if(count1 === 0 && count2 === 0 && count3 === 0 && count4 === 0 && count5 === 0 && count6 === 0 && count7 === 0 && count8 === 0 && count9 === 0) {
+          for(let i = 0; i < 10; i++) {
+          var tweet = streams.home[i];
+          var $tweet = $('<div></div>');
+          $tweet.text('@' + tweet.user + ': ').append('<br/>').append(tweet.message).append('<br/>').append(new Date().toString().substring(0,24)).append('<br/>'+'<br/>');
+          $tweet.appendTo($newsfeed);
+          }
+          } else {
+            alert("No more posts from this friend.")
+          }
+      });
+
+      
+
+      });
+    </script>
+
+
+   
+    
+  </body>
+</html>

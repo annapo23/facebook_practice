@@ -1,0 +1,8 @@
+#content_right {
+    display: inline-block;
+    height: 750px;
+    width: 50px;
+    position: absolute;
+    margin: 20px 700px;  
+    border-left: 1px solid #EAEAEA;
+}
